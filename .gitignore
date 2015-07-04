@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*.db
+*.sublime_project
+.DS_Store
+.coverage
+local_settings.py
+/static
+/media
+/components
+sftp-config.json
+

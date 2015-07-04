@@ -1,0 +1,14 @@
+syntax: glob
+*.pyc
+*.pyo
+*.db
+*.sublime_project
+.DS_Store
+.coverage
+local_settings.py
+sftp-config.json
+
+syntax: regexp
+^static/
+^media/
+^components/

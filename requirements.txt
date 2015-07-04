@@ -1,0 +1,8 @@
+Mezzanine==3.1.10
+Cartridge==0.9.5
+mezzanine-slides==2.1.2
+django-bower==5.0.4
+django-compressor==1.5
+django-countries==3.3
+django-extensions==1.5.5
+south==1.0.2
