@@ -1,0 +1,44 @@
+/*HTML, BODY, MAIN FIXING*/
+
+body {
+    font-family: "OpenSansRegular", sans-serif;
+    font-size: 16px;
+    padding-top: 60px;
+}
+
+body p{
+  font-family: "OpenSansRegular", sans-serif;
+}
+
+/*Fonts
+-------------------
+1. Open Sans: OpenSansRegular, OpenSansLight, OpenSansItalic, OpenSansBold, OpenSansExtraBold, OpenSansExtraBoldItalic,
+OpenSansBoldItalic, OpenSansRegularItalic, OpenSansSemiBold, OpenSansSemiBoldItalic,
+2. PT Sans: PTSansRegular, PTSansItalic, PTSansBold
+3. Segoe UI: SegoeUISemiBold, SegoeUILight, SegoeUIItalic, SegoeUIBold, SegoeUIRegular
+-------------------
+*/
+
+.osr {
+    font-family: "OpenSansRegular", sans-serif !important;
+}
+
+.osb {
+    font-family: "OpenSansBold", sans-serif !important;
+}
+
+.osxb {
+    font-family: "OpenSansExtraBold", sans-serif !important;
+}
+
+/*product*/
+
+.product-size li {
+    display: block;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 6px;
+    margin: 10px 10px 10px 0px;
+    width: 45px;
+    text-align: center;
+}

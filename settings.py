@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import absolute_import, unicode_literals
-import os
+from django.utils.translation import ugettext_lazy as _
 
 ######################
 # CARTRIDGE SETTINGS #
@@ -7,46 +9,47 @@ import os
 
 # The following settings are already defined in cartridge.shop.defaults
 # with default values, but are common enough to be put here, commented
-# out, for conveniently overriding. Please consult the settings
-# documentation for a full list of settings Cartridge implements:
-# http://cartridge.jupo.org/configuration.html#default-settings
+# out, for convenient overriding.
 
 # Sequence of available credit card types for payment.
 # SHOP_CARD_TYPES = ("Mastercard", "Visa", "Diners", "Amex")
 
 # Setting to turn on featured images for shop categories. Defaults to False.
-# SHOP_CATEGORY_USE_FEATURED_IMAGE = True
+SHOP_CATEGORY_USE_FEATURED_IMAGE = True
 
 # Set an alternative OrderForm class for the checkout process.
 # SHOP_CHECKOUT_FORM_CLASS = 'cartridge.shop.forms.OrderForm'
 
 # If True, the checkout process is split into separate
 # billing/shipping and payment steps.
-# SHOP_CHECKOUT_STEPS_SPLIT = True
+SHOP_CHECKOUT_STEPS_SPLIT = False
 
 # If True, the checkout process has a final confirmation step before
 # completion.
-# SHOP_CHECKOUT_STEPS_CONFIRMATION = True
+SHOP_CHECKOUT_STEPS_CONFIRMATION = False
+
+# If False, there is no payment step on the checkout process.
+SHOP_PAYMENT_STEP_ENABLED = False
 
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
 # SHOP_CURRENCY_LOCALE = ""
 
-# Dotted package path and name of the function that
+# Dotted package path and class name of the function that
 # is called on submit of the billing/shipping checkout step. This
 # is where shipping calculation can be performed and set using the
 # function ``cartridge.shop.utils.set_shipping``.
 # SHOP_HANDLER_BILLING_SHIPPING = \
-#                       "cartridge.shop.checkout.default_billship_handler"
+#                           "cartridge.shop.checkout.default_billship_handler"
 
-# Dotted package path and name of the function that
+# Dotted package path and class name of the function that
 # is called once an order is successful and all of the order
 # object's data has been created. This is where any custom order
 # processing should be implemented.
 # SHOP_HANDLER_ORDER = "cartridge.shop.checkout.default_order_handler"
 
-# Dotted package path and name of the function that
+# Dotted package path and class name of the function that
 # is called on submit of the payment checkout step. This is where
 # integration with a payment gateway should be implemented.
 # SHOP_HANDLER_PAYMENT = "cartridge.shop.checkout.default_payment_handler"
@@ -57,12 +60,21 @@ import os
 #     (2, "Processed"),
 # )
 
+# Show the links to the wishlist, and allow adding products to it.
+SHOP_USE_WISHLIST = False
+
+# Show the product rating form, and allow browsing by rating.
+SHOP_USE_RATINGS = False
+
+# Use product variations.
+SHOP_USE_VARIATIONS = False
+
 # Sequence of value/name pairs for types of product options,
-# eg Size, Colour. NOTE: Increasing the number of these will
-# require database migrations!
+# eg Size, Colour.
+
 # SHOP_OPTION_TYPE_CHOICES = (
-#     (1, "Size"),
-#     (2, "Colour"),
+#     (1, _(u"Размер")),
+#     (2, _(u"Цвет")),
 # )
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
@@ -76,7 +88,7 @@ import os
 
 # The following settings are already defined with default values in
 # the ``defaults.py`` module within each of Mezzanine's apps, but are
-# common enough to be put here, commented out, for conveniently
+# common enough to be put here, commented out, for convenient
 # overriding. Please consult the settings documentation for a full list
 # of settings Mezzanine implements:
 # http://mezzanine.jupo.org/docs/configuration.html#default-settings
@@ -122,37 +134,70 @@ import os
 # args and a dictionary of keyword args, to use when creating the
 # field instance. When specifying the field class, the path
 # ``django.models.db.`` can be omitted for regular Django model fields.
-#
-# EXTRA_MODEL_FIELDS = (
-#     (
-#         # Dotted path to field.
-#         "mezzanine.blog.models.BlogPost.image",
-#         # Dotted path to field class.
-#         "somelib.fields.ImageField",
-#         # Positional args for field class.
-#         ("Image",),
-#         # Keyword args for field class.
-#         {"blank": True, "upload_to": "blog"},
-#     ),
-#     # Example of adding a field to *all* of Mezzanine's content types:
-#     (
-#         "mezzanine.pages.models.Page.another_field",
-#         "IntegerField", # 'django.db.models.' is implied if path is omitted.
-#         ("Another name",),
-#         {"blank": True, "default": 1},
-#     ),
-# )
+
+EXTRA_MODEL_FIELDS = (
+    (
+        # Dotted path to field.
+        "cartridge.shop.models.Product.set_country",
+        # Dotted path to field class.
+        "django_countries.fields.CountryField",
+        # Positional args for field class.
+        (_(u"Страна производитель"),),
+        # Keyword args for field class.
+        {"blank_label": _(u"Страна")},
+    ),
+    (
+        "cartridge.shop.models.Product.material",
+        "CharField",
+        (_(u"Состав"),),
+        {"blank": True, "max_length": 256, "help_text": _(u"Выбрать при наличии данного размера")},
+    ),
+    (
+        "cartridge.shop.models.Product.size_xxs",
+        "BooleanField",
+        (_(u"Размер XXS"),),
+        {"blank": True, "default":False, "help_text": _(u"Выбрать при наличии данного размера")},
+    ),
+    (
+        "cartridge.shop.models.Product.size_xs",
+        "BooleanField",
+        (_(u"Размер XS"),),
+        {"blank": True, "default":False, "help_text": _(u"Выбрать при наличии данного размера")},
+    ),
+    (
+        "cartridge.shop.models.Product.size_s",
+        "BooleanField",
+        (_(u"Размер S"),),
+        {"blank": True, "default":False, "help_text": _(u"Выбрать при наличии данного размера")},
+    ),
+    (
+        "cartridge.shop.models.Product.size_l",
+        "BooleanField",
+        (_(u"Размер L"),),
+        {"blank": True, "default":False, "help_text": _(u"Выбрать при наличии данного размера")},
+    ),
+    # Example of adding a field to *all* of Mezzanine's content types:
+    # (
+    #     "mezzanine.pages.models.Page.another_field",
+    #     "IntegerField", # 'django.db.models.' is implied if path is omitted.
+    #     ("Another name",),
+    #     {"blank": True, "default": 1},
+    # ),
+)
 
 # Setting to turn on featured images for blog posts. Defaults to False.
-#
-# BLOG_USE_FEATURED_IMAGE = True
 
-# If True, the django-modeltranslation will be added to the
+BLOG_USE_FEATURED_IMAGE = True
+
+# If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
-USE_MODELTRANSLATION = False
-SECRET_KEY = "395ea9da-f187-45bf-ad75-5bbb3a4d64c8766c837a-fe0c-4124-a83a-8e56d1f8a1929ae4e2b1-a928-403f-bf32-07329ed187ce"
-NEVERCACHE_KEY = "59cb3dc5-13e6-4287-8954-b8569ebeffaeb10ee5b8-ab21-4bb0-bdb5-4bc42eb0edf28ecd0397-d860-43d0-8365-97b277301145"
+USE_SOUTH = True
 
+# SITE BRAND
+SITE_TITLE = "Preludio with MARC & ANDRE"
+
+# SITE BRAND TEGLINE
+SITE_TAGLINE = ""
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -164,11 +209,15 @@ NEVERCACHE_KEY = "59cb3dc5-13e6-4287-8954-b8569ebeffaeb10ee5b8-ab21-4bb0-bdb5-4b
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
+
 MANAGERS = ADMINS
 
+
+AUTH_USER_MODEL = 'auth.User'
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -177,19 +226,19 @@ ALLOWED_HOSTS = []
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = None
+TIME_ZONE = "Europe/Moscow"
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "ru"
 
 # Supported languages
 _ = lambda s: s
 LANGUAGES = (
-    ('en', _('English')),
+    ('ru', _('Russian')),
 )
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
@@ -204,7 +253,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # Tuple of IP addresses, as strings, that:
 #   * See debug comments, when DEBUG is true
@@ -222,6 +271,7 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
+    'djangobower.finders.BowerFinder',
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
@@ -258,8 +308,11 @@ DATABASES = {
 # PATHS #
 #########
 
+import os
+
 # Full filesystem path to the project.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+path = lambda *a: os.path.join(PROJECT_ROOT, *a)
 
 # Name of the directory for the project.
 PROJECT_DIRNAME = PROJECT_ROOT.split(os.sep)[-1]
@@ -282,7 +335,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = STATIC_URL + "media/"
+MEDIA_URL = STATIC_URL + "/media/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -297,7 +350,20 @@ ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
+# Bower path
+BOWER_COMPONENTS_ROOT = path("components")
 
+COMPRESS_URL = '/'
+
+COMPRESS_ROOT = PROJECT_ROOT
+
+COMPRESS_OUTPUT_DIR = 'media/compress'
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/less', 'lessc {infile} {outfile}'),
+)
 ################
 # APPLICATIONS #
 ################
@@ -311,19 +377,32 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
+    "beatum",
+    "mezzanine_slides",
+    "cartridge.shop",
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",
     "mezzanine.generic",
-    "mezzanine.pages",
-    "cartridge.shop",
     "mezzanine.blog",
     "mezzanine.forms",
-    "mezzanine.galleries",
-    "mezzanine.twitter",
+    "mezzanine.pages",
+    "django_countries",
+
+    # "mezzanine.galleries",
+    # "mezzanine.twitter",
     # "mezzanine.accounts",
     # "mezzanine.mobile",
 )
+
+BOWER_INSTALLED_APPS = (
+    'bootstrap#3.3.4',
+    'jquery#2.1.4',
+    'scrollup#2.4.1',
+    'nicescroll#3.6.0',
+    'font-awesome#4.3.0'
+)
+
 
 # List of processors used by RequestContext to populate the context.
 # Each one should be a callable that takes the request object as its
@@ -379,6 +458,7 @@ OPTIONAL_APPS = (
     "debug_toolbar",
     "django_extensions",
     "compressor",
+    "djangobower",
     PACKAGE_NAME_FILEBROWSER,
     PACKAGE_NAME_GRAPPELLI,
 )
@@ -420,9 +500,8 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 # defined per machine.
 try:
     from local_settings import *
-except ImportError as e:
-    if "local_settings" not in str(e):
-        raise e
+except ImportError:
+    pass
 
 
 ####################

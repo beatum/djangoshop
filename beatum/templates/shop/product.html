@@ -1,0 +1,191 @@
+{% extends "shop/base.html" %}
+{% load staticfiles mezzanine_tags shop_tags rating_tags i18n %}
+
+{% block meta_title %}{{ product.meta_title }}{% endblock %}
+{% block body_id %}category{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% for keyword in product.keywords.all %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ product.description }}
+{% endmetablock %}{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "mezzanine/css/magnific-popup.css" %}">
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static "mezzanine/js/magnific-popup.js" %}"></script>
+<script>
+$(document).ready(function() {
+    $('#product-images-large').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+            enabled: true,
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block extra_head %}
+<script>var variations = {{ variations_json|safe }};</script>
+<script src="{% static "cartridge/js/product_variations.js" %}"></script>
+{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<li>{{ product.title }}</li>
+{% endblock %}
+
+{% block title %}
+{% editable product.title %}{{ product.title }}{% endeditable %}
+{% endblock %}
+
+{% block main %}
+
+{% if images %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="clearfix">
+                    <ul id="product-images-large" class="list-unstyled list-inline">
+                        {% for image in images %}
+                        <li id="image-{{ image.id }}-large"{% if not forloop.first %}style="display:none;"{% endif %}>
+                            <a class="product-image-large thumbnail clearfix" href="{{ MEDIA_URL }}{{ image.file }}">
+                                <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 550 400 %}" class="img-responsive">
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {# Параметры продукта #}
+            <div class="col-sm-4">
+                {% if product.available and has_available_variations %}
+                <ul id="variations" class="list-unstyled">
+                    {% for variation in variations %}
+                    <li id="variation-{{ variation.sku }}"
+                        {% if not variation.default %}style="display:none;"{% endif %}>
+                        {% if variation.has_price %}
+                            {% if variation.on_sale %}
+                                {% trans "Цена:" %}
+                                <span class="old-price lead">{{ variation.unit_price|currency }}</span>
+                                <br>{% trans "На распрадаже:" %}<br>
+                            {% endif %}
+                            <span class="price lead">{{ variation.price|currency }}</span>
+                        {% else %}
+                            {% if has_available_variations %}
+                            <span class="error-msg">
+                            {% trans "The selected options are currently unavailable." %}
+                            </span>
+                            {% endif %}
+                        {% endif %}
+                        {% if variation.sku %}
+                            <br><span class="sku text-muted">{% trans "Артикул" %}:</span> {{ variation.sku }}</p>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                    {% if product.set_country %}
+                    <li>
+                        <span class="country-label text-muted">{% trans "Производитель" %}: <br></span>
+                        <span class="country-flag"><img src="{{ product.set_country.flag }}" alt="{{ product.set_country.name }}"></span>
+                        &nbsp;
+                        <span class="country-name">{{ product.set_country.name }}</span>
+                    </li>
+                    {% endif %}
+                    {% if product.material %}
+                    <li>
+                        <span class="material text-muted">{% trans "Состав" %}: <br></span>
+                        {{ product.material }}
+                    </li>
+                    {% endif %}
+                    <li>
+                        <span class="material text-muted">{% trans "Доступные размеры" %}: <br></span>
+                        <ul class="product-size list-unstyled">
+                            {% if product.size_xxs %}
+                            <li>XXS</li>
+                            {% endif %}
+                            {% if product.size_xs %}
+                            <li>XS</li>
+                            {% endif %}
+                            {% if product.size_s %}
+                            <li>S</li>
+                            {% endif %}
+                            {% if product.size_l %}
+                            <li>L</li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
+                <p class="error-msg">{% trans "This product is currently unavailable." %}</p>
+                {% endif %} 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {% if images|length != 1 %}
+                    <ul id="product-images-thumb" class="list-unstyled list-inline">
+                        {% for image in images %}
+                        <li>
+                            <a class="thumbnail" id="image-{{ image.id }}" href="{{ MEDIA_URL }}{{ image.file }}">
+                                <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 75 75 %}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endif %}
+
+{% editable product.content %}
+    {{ product.content|richtext_filters|safe }}
+{% endeditable %}
+
+{% if settings.SHOP_USE_RATINGS %}
+<div class="panel panel-default rating">
+    <div class="panel-body">{% rating_for product %}</div>
+</div>
+{% endif %}
+
+{% if settings.SHOP_USE_RELATED_PRODUCTS and related_products %}
+<h3>{% trans "Related Products" %}</h3>
+<div class="row related-products">
+    {% for product in related_products %}
+    <div class="col-xs-6 col-sm-4 col-md-3 product-thumb">
+        <a class="thumbnail" href="{{ product.get_absolute_url }}">
+            {% if product.image %}
+            <img src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
+            {% endif %}
+            <div class="caption">
+            <h6>{{ product }}</h6>
+            <div class="price-info">
+            {% if product.has_price %}
+                {% if product.on_sale %}
+                <span class="old-price">{{ product.unit_price|currency }}</span>
+                {% trans "On sale:" %}
+                {% endif %}
+                <span class="price">{{ product.price|currency }}</span>
+            {% else %}
+                <span class="coming-soon">{% trans "Coming soon" %}</span>
+            {% endif %}
+            </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
