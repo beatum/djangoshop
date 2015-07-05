@@ -1,13 +1,13 @@
 /*HTML, BODY, MAIN FIXING*/
 
 body {
-    font-family: "OpenSansRegular", sans-serif;
+    font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;
     font-size: 16px;
     padding-top: 60px;
 }
 
 body p{
-  font-family: "OpenSansRegular", sans-serif;
+  font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;
 }
 
 /*Fonts

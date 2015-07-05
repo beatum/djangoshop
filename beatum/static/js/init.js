@@ -17,7 +17,9 @@ $(document).ready(function () {
     });
     // Enable smart menu
     $(function() {
-      $('#main-menu').smartmenus();
+      $('#main-menu').smartmenus({
+        bottomToTopSubMenus: false
+      });
     });
     // Scroll UP animation
     $(function () {
