@@ -34,7 +34,6 @@
 
 ## Проблемы
 1. При генерации счетов в формате PDF ломается кодировка!
-2. При добавлении нового товара идёт ругань на отсутвие фаилов статики 'static/mezzanine/css/magnific-popup.css' could not be found in the COMPRESS_ROOT or with staticfiles.
 
 ## Основная документация
 1. http://mezzanine.jupo.org/docs/ - Django CMS Mezzanine
