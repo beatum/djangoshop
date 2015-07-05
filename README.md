@@ -1,4 +1,4 @@
-# Djangoshop (Mezzanine CMS + Cartridge + Beatum Templates)
+# Djangoshop (Mezzanine CMS + Cartridge + Beatum)
 
 Версия проекта 0.01 - Beta 
 
@@ -11,8 +11,9 @@
 Перед выполнением команд syncdb и migrate закоментируйте EXTRA_MODEL_FIELDS в settings/
 
 После выполнения команд syncdb и migrate проверьте в том, что все миграции создались, затем раскоментируйте EXTRA_MODEL_FIELDS и выполните следующие комнады:
-1. ./manage.py schemamigration cartridge.shop --auto
-2. ./manage.py migrate cartridge.shop
+
+1. ./manage.py schemamigration shop --auto --stdout >> myapp/migrations/0001_shop_customization.py или /manage.py schemamigration shop --auto
+2. ./manage.py migrate myapp или /manage.py migrate shop
 3. ./manage.py migrate --list для того, чтобы убедиться что все миграции прошли успешно
 
 Для установки статических зависимостей выполните команду ./manage.py bower install
@@ -33,7 +34,7 @@
 
 ## Проблемы
 1. При генерации счетов в формате PDF ломается кодировка!
-
+2. При добавлении нового товара идёт ругань на отсутвие фаилов статики 'static/mezzanine/css/magnific-popup.css' could not be found in the COMPRESS_ROOT or with staticfiles.
 
 ## Основная документация
 1. http://mezzanine.jupo.org/docs/ - Django CMS Mezzanine

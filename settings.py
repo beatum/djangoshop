@@ -82,6 +82,8 @@ SHOP_USE_VARIATIONS = False
 # eg for "Colour" then "Size" given the above:
 # SHOP_OPTION_ADMIN_ORDER = (2, 1)
 
+USE_MODELTRANSLATION = False
+
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -138,13 +140,13 @@ SHOP_USE_VARIATIONS = False
 EXTRA_MODEL_FIELDS = (
     (
         # Dotted path to field.
-        "cartridge.shop.models.Product.set_country",
+        "cartridge.shop.models.Product.country",
         # Dotted path to field class.
         "django_countries.fields.CountryField",
         # Positional args for field class.
         (_(u"Страна производитель"),),
         # Keyword args for field class.
-        {"blank_label": _(u"Страна")},
+        {"blank_label": _(u"Страна"), "blank": True, "null":True},
     ),
     (
         "cartridge.shop.models.Product.material",

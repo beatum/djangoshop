@@ -7,7 +7,7 @@ from cartridge.shop.models import Product
 from django.utils.translation import ugettext_lazy as _
 
 product_fieldsets = deepcopy(ProductAdmin.fieldsets) 
-product_fieldsets[0][1]["fields"].insert(2, "set_country") #  Страна
+product_fieldsets[0][1]["fields"].insert(2, "country") #  Страна
 product_fieldsets[0][1]["fields"].insert(3, "material") # Материал
 product_fieldsets[0][1]["fields"].insert(4, "size_xxs")
 product_fieldsets[0][1]["fields"].insert(4, "size_xs")
