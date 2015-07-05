@@ -402,7 +402,8 @@ BOWER_INSTALLED_APPS = (
     'jquery#2.1.4',
     'scrollup#2.4.1',
     'nicescroll#3.6.0',
-    'font-awesome#4.3.0'
+    'font-awesome#4.3.0',
+    'smartmenus#0.9.7'
 )
 
 

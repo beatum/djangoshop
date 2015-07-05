@@ -15,7 +15,10 @@ $(document).ready(function () {
         mousescrollstep: 40, // scrolling speed with mouse wheel (pixel)
         background: "", // change css for rail background
     });
-
+    // Enable smart menu
+    $(function() {
+      $('#main-menu').smartmenus();
+    });
     // Scroll UP animation
     $(function () {
         $.scrollUp({
