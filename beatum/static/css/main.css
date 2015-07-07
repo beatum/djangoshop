@@ -1,13 +1,21 @@
 /*HTML, BODY, MAIN FIXING*/
 
 body {
-    font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;
+    font-family: "OpenSansLight", Arial, sans-serif;
+    /*font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;*/
     font-size: 16px;
     padding-top: 60px;
+    background-color: #f1f1f1;
 }
 
 body p{
-  font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;
+    /*font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;*/
+    font-family: "OpenSansLight", Arial, sans-serif;
+}
+
+body .category-title {
+    font-size: 16px;
+    text-align: center;
 }
 
 /*Fonts
@@ -41,4 +49,79 @@ OpenSansBoldItalic, OpenSansRegularItalic, OpenSansSemiBold, OpenSansSemiBoldIta
     margin: 10px 10px 10px 0px;
     width: 45px;
     text-align: center;
+}
+
+body .product-sorting select {
+    width: 200px;
+}
+
+span.title {
+    display: block;
+    font-size: 20px;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-family: "OpenSansLight", sans-serif;
+    /*color: #4c7ed3;*/
+}
+
+h1.pagetitle {
+    display: block;
+    font-size: 20px;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-family: "OpenSansLight", sans-serif;
+    margin-top: 0px;
+    /*color: #4c7ed3;*/
+}
+
+/* breadcrumb */
+
+body .breadcrumb {
+    padding: 0px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+/*form - remove border-radius */
+.form-group > input[type="text"], .form-group > input[type="password"], 
+.form-group > input[type="datetime"], .form-group > input[type="datetime-local"], 
+.form-group > input[type="date"], .form-group > input[type="month"], 
+.form-group > input[type="time"], .form-group > input[type="week"], 
+.form-group > input[type="number"], .form-group > input[type="email"], 
+.form-group > input[type="url"], .form-group > input[type="search"], 
+.form-group > input[type="tel"], .form-group > input[type="color"], 
+.form-group > select, .form-group > textarea {
+    border-radius: 0px !important;
+}
+
+/* footer */
+body footer {
+    background-color: #F8F8F8;
+    border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+    margin-top: 15px;
+    padding: 15px 0 15px;
+}
+
+footer ul li {
+    font-size: 14px;
+    padding: 0 !important;
+}
+
+footer ul li:first-child {
+    font-size: 18px;
+    padding: 10px 0 !important;
+}
+
+footer .nav-footer > ul {
+    display: inline-block;
+    width: 210px;
+    margin-left: 50px;
+    vertical-align: top;
 }

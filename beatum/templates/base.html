@@ -80,7 +80,7 @@
             </div>
 
             <div class="navbar-collapse collapse">
-                {% search_form "all" %}
+                {# {% search_form "all" %} #}
                 {% page_menu "pages/menus/dropdown.html" %}
             </div>
         </div>
@@ -100,8 +100,6 @@
         {% endif %}
         {% endnevercache %}
 
-        <h1>{% block title %}{% endblock %}</h1>
-
         <ul class="breadcrumb">
         {% spaceless %}
         {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
@@ -113,10 +111,12 @@
         <div class="row">
             <div class="col-md-3 left">
                 {% block left_panel %}
+                <span class="title">Категории</span>
                 <div>{% page_menu "pages/menus/tree.html" %}</div>
                 {% endblock %}
             </div>
             <div class="col-md-9 middle">
+                <h1 class="pagetitle">{% block title %}{% endblock %}</h1>
                 <div class="row slides">{% include "includes/standard_slides.html" %}</div>
                 {% block main %}{% endblock %}
             </div>
@@ -126,18 +126,19 @@
     <footer>
         <div class="container">
             {% page_menu "pages/menus/footer.html" %}
-            <div class="row">
-                <p class="site-info text-center">
-                    &copy; 2015, {% trans "Магазин одежды Preludio" %}.<br>
-                    Россия, Краснодарский край, г. Краснодар, ТЦ СБС (2-ой этаж)
-                </p>
-                <p class="site-info text-center">
-                    <a href="http://beatum-site.ru/">{% trans "Создание сайта — «Биатум»" %}</a>
-                </p>
-            </div>
         </div>
     </footer>
-
+    <div class="container">
+        <div class="row">
+            <p class="site-info text-center">
+                &copy; 2015, {% trans "Магазин одежды Preludio" %}.<br>
+                Россия, Краснодарский край, г. Краснодар, ТЦ СБС (2-ой этаж)
+            </p>
+            <p class="site-info text-center">
+                <a href="http://beatum-site.ru/">{% trans "Создание сайта — «Биатум»" %}</a>
+            </p>
+        </div>
+    </div>
     {% include "includes/footer_scripts.html" %}
 
 </body>

@@ -18,7 +18,7 @@ $(document).ready(function () {
     // Enable smart menu
     $(function() {
       $('#main-menu').smartmenus({
-        bottomToTopSubMenus: false
+        subIndicatorsText: '<i class="fa fa-angle-right"></i>',
       });
     });
     // Scroll UP animation
