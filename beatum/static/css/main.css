@@ -1,31 +1,52 @@
-/*HTML, BODY, MAIN FIXING*/
+/**
+ * Description: Custom css for Bootstrap 3.X
+ * Version: 1.0.0
+ * Last update: 2015/07/08
+ * Author: Ivan Semernyakov <username@gmail.com>
+ *
+ * Summary:
+ *
+ *    0. HTML, BODY
+ *        - 0.1. FONTS
+ *        - 0.2. HEADERS
+ *        - 0.3. RESET FORMS
+ *    1. CUSTOM ELEMENTS
+ *    2. FOOTER
+ */
+
+/* ==========================================================================
+   0. HTML, BODY
+   ========================================================================== */
 
 body {
+    padding-top: 60px;
+
     font-family: "OpenSansLight", Arial, sans-serif;
     /*font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;*/
     font-size: 16px;
-    padding-top: 60px;
+
     background-color: #f1f1f1;
 }
 
-body p{
+body p {
     /*font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;*/
     font-family: "OpenSansLight", Arial, sans-serif;
 }
 
 body .category-title {
     font-size: 16px;
+
     text-align: center;
 }
 
-/*Fonts
--------------------
-1. Open Sans: OpenSansRegular, OpenSansLight, OpenSansItalic, OpenSansBold, OpenSansExtraBold, OpenSansExtraBoldItalic,
-OpenSansBoldItalic, OpenSansRegularItalic, OpenSansSemiBold, OpenSansSemiBoldItalic,
-2. PT Sans: PTSansRegular, PTSansItalic, PTSansBold
-3. Segoe UI: SegoeUISemiBold, SegoeUILight, SegoeUIItalic, SegoeUIBold, SegoeUIRegular
--------------------
-*/
+/* 0.1. FONTS
+   ========================================================================== */
+/*
+ * 1. Open Sans: OpenSansRegular, OpenSansLight, OpenSansItalic, OpenSansBold, OpenSansExtraBold, OpenSansExtraBoldItalic,
+ * OpenSansBoldItalic, OpenSansRegularItalic, OpenSansSemiBold, OpenSansSemiBoldItalic,
+ * 2. PT Sans: PTSansRegular, PTSansItalic, PTSansBold
+ * 3. Segoe UI: SegoeUISemiBold, SegoeUILight, SegoeUIItalic, SegoeUIBold, SegoeUIRegular
+ */
 
 .osr {
     font-family: "OpenSansRegular", sans-serif !important;
@@ -39,89 +60,118 @@ OpenSansBoldItalic, OpenSansRegularItalic, OpenSansSemiBold, OpenSansSemiBoldIta
     font-family: "OpenSansExtraBold", sans-serif !important;
 }
 
-/*product*/
+/* 0.2. HEADER ELEMENTS
+   ========================================================================== */
+
+h1.pagetitle {
+    display: block;
+    padding-bottom: 8px;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    font-family: "OpenSansLight", sans-serif;
+    font-size: 20px;
+    font-size: 22px;
+
+    border-bottom: 3px solid #eee;
+}
+
+span.title {
+    display: block;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+
+    font-family: "OpenSansLight", sans-serif;
+    font-size: 20px;
+    font-size: 22px;
+
+    border-bottom: 3px solid #eee;
+}
+
+/* 0.3. RESET FORMS
+   ========================================================================== */
+
+.form-group > input[type="text"],
+.form-group > input[type="password"],
+.form-group > input[type="datetime"],
+.form-group > input[type="datetime-local"],
+.form-group > input[type="date"],
+.form-group > input[type="month"],
+.form-group > input[type="time"],
+.form-group > input[type="week"],
+.form-group > input[type="number"],
+.form-group > input[type="email"],
+.form-group > input[type="url"],
+.form-group > input[type="search"],
+.form-group > input[type="tel"],
+.form-group > input[type="color"],
+.form-group > select,
+.form-group > textarea {
+    border-radius: 0 !important;
+}
+
+/* 1. CUSTOM ELEMENTS
+   ========================================================================== */
 
 .product-size li {
     display: block;
     float: left;
-    border: 1px solid #ccc;
-    padding: 6px;
-    margin: 10px 10px 10px 0px;
     width: 45px;
+    padding: 6px;
+    margin: 10px 10px 10px 0;
+
     text-align: center;
+
+    border: 1px solid #ccc;
 }
 
 body .product-sorting select {
     width: 200px;
 }
 
-span.title {
-    display: block;
-    font-size: 20px;
-    border-bottom: 3px solid #eee;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-family: "OpenSansLight", sans-serif;
-    /*color: #4c7ed3;*/
-}
-
-h1.pagetitle {
-    display: block;
-    font-size: 20px;
-    border-bottom: 3px solid #eee;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-    font-size: 22px;
-    font-family: "OpenSansLight", sans-serif;
-    margin-top: 0px;
-    /*color: #4c7ed3;*/
-}
-
 /* breadcrumb */
 
 body .breadcrumb {
-    padding: 0px;
+    padding: 0;
     margin-bottom: 20px;
+
     list-style: none;
-    background-color: transparent;
+
     border-radius: 0;
+    background-color: transparent;
 }
 
-/*form - remove border-radius */
-.form-group > input[type="text"], .form-group > input[type="password"], 
-.form-group > input[type="datetime"], .form-group > input[type="datetime-local"], 
-.form-group > input[type="date"], .form-group > input[type="month"], 
-.form-group > input[type="time"], .form-group > input[type="week"], 
-.form-group > input[type="number"], .form-group > input[type="email"], 
-.form-group > input[type="url"], .form-group > input[type="search"], 
-.form-group > input[type="tel"], .form-group > input[type="color"], 
-.form-group > select, .form-group > textarea {
-    border-radius: 0px !important;
-}
+/* 2. FOOTER
+   ========================================================================== */
 
-/* footer */
-body footer {
-    background-color: #F8F8F8;
-    border-top: 1px solid #E7E7E7;
-    border-bottom: 1px solid #E7E7E7;
-    margin-top: 15px;
+footer {
     padding: 15px 0 15px;
+    margin-top: 15px;
+
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    background-color: #f8f8f8;
 }
 
 footer ul li {
-    font-size: 14px;
     padding: 0 !important;
+
+    font-size: 14px;
 }
 
 footer ul li:first-child {
-    font-size: 18px;
     padding: 10px 0 !important;
+    margin-bottom: 20px;
+
+    font-size: 18px;
+
+    border-bottom: 3px solid #eee;
 }
 
 footer .nav-footer > ul {
     display: inline-block;
     width: 210px;
     margin-left: 50px;
+
     vertical-align: top;
 }
