@@ -15,28 +15,42 @@
  */
 
 /* ==========================================================================
-   0. HTML, BODY
+   0. HTML, BODY, A
    ========================================================================== */
 
 body {
     padding-top: 60px;
 
     font-family: "OpenSansLight", Arial, sans-serif;
-    /*font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;*/
     font-size: 16px;
 
     background-color: #f1f1f1;
 }
 
 body p {
-    /*font-family:'Lucida Sans Unicode','Lucida Sans','Lucida Grande',Arial,sans-serif;*/
     font-family: "OpenSansLight", Arial, sans-serif;
 }
 
-body .category-title {
-    font-size: 16px;
+body a,
+footer a {
+    -webkit-transition: all .3s .03s ease;
+       -moz-transition: all .3s .03s ease;
+        -ms-transition: all .3s .03s ease;
+         -o-transition: all .3s .03s ease;
+            transition: all .3s .03s ease;
+    text-decoration: none;
 
-    text-align: center;
+    border-bottom: 1px solid none;
+}
+
+body a:hover {
+    text-decoration: none;
+
+    border-bottom: 1px solid;
+}
+
+footer a {
+    color: #333;
 }
 
 /* 0.1. FONTS
@@ -113,6 +127,12 @@ span.title {
 /* 1. CUSTOM ELEMENTS
    ========================================================================== */
 
+body .category-title {
+    font-size: 16px;
+
+    text-align: center;
+}
+
 .product-size li {
     display: block;
     float: left;
@@ -156,7 +176,7 @@ footer {
 footer ul li {
     padding: 0 !important;
 
-    font-size: 14px;
+    font-size: 16px;
 }
 
 footer ul li:first-child {

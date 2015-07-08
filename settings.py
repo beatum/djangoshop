@@ -172,6 +172,7 @@ EXTRA_MODEL_FIELDS = (
         (_(u"Размер S"),),
         {"blank": True, "default":False, "help_text": _(u"Выбрать при наличии данного размера")},
     ),
+    # TODO: Add new size: M, L, XL, XXl, XXXL, XXXXL
     (
         "cartridge.shop.models.Product.size_l",
         "BooleanField",
@@ -403,7 +404,8 @@ BOWER_INSTALLED_APPS = (
     'scrollup#2.4.1',
     'nicescroll#3.6.0',
     'font-awesome#4.3.0',
-    'smartmenus#0.9.7'
+    'smartmenus#0.9.7',
+    'swiper#3.0.8'
 )
 
 

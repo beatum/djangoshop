@@ -21,12 +21,13 @@
             <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" type="text/css">
             <link rel="stylesheet" href="{% static "css/fonts/opensansfonts.css" %}" type="text/css">
             <link rel="stylesheet" href="{% static "css/scrollup/tab.css" %}" type="text/css">
-            <link rel="stylesheet" href="{% static "css/responsiveslider/slider.css" %}"/>
+            {# <link rel="stylesheet" href="{% static "css/responsiveslider/slider.css" %}"/> #}
             <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
             <link rel="stylesheet" href="{% static "css/helper.css" %}">
             <link rel="stylesheet" href="{% static "css/main.css" %}">
             <link rel='stylesheet' href="{% static "smartmenus/dist/css/sm-core-css.css" %}"/>
             <link rel='stylesheet' href="{% static "css/smartmenu/sm-simple.css" %}"/>
+            <link rel='stylesheet' href="{% static "swiper/dist/css/swiper.min.css" %}"/>
             {% if LANGUAGE_BIDI %}
                 <link rel="stylesheet" href="{% static "css/rtl.css" %}">
             {% endif %}
@@ -52,6 +53,7 @@
             <script src="{% static "responsiveslides/responsiveslides.js" %}"></script>
             <script src="{% static "js/init.js" %}" type="text/javascript"></script>
             <script src="{% static "smartmenus/dist/jquery.smartmenus.min.js" %}" type="text/javascript"></script>
+            <script src="{% static "swiper/dist/js/swiper.jquery.min.js" %}" type="text/javascript"></script>
             {% block extra_js %}{% endblock %}
         {% endcompress %}
 
@@ -117,7 +119,7 @@
             </div>
             <div class="col-md-9 middle">
                 <h1 class="pagetitle">{% block title %}{% endblock %}</h1>
-                <div class="row slides">{% include "includes/standard_slides.html" %}</div>
+                {# <div class="row slides">{% include "includes/standard_slides.html" %}</div> #}
                 {% block main %}{% endblock %}
             </div>
         </div>

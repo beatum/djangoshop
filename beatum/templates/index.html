@@ -1,29 +1,65 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static mezzanine_tags %}
 
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}{% trans "Home" %}{% endblock %}
 
-{% block breadcrumb_menu %}
-<li class="active">{% trans "Home" %}</li>
-{% endblock %}
+{% block breadcrumb_menu %}{% endblock %}
 
 {% block main %}
-<p class="lead">It's working!</p>
-{% blocktrans %}
-<h2>Congratulations!</h2>
-<p>
-    Welcome to your new Mezzanine powered website.
-    Here are some quick links to get you started:
-</p>
-<ul>
-    <li><a href="/admin/">Log in to the admin interface</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/content-architecture.html">Creating custom page types</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html#templates">Modifying HTML templates</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html#why-isn-t-the-homepage-a-page-object-i-can-edit-via-the-admin">Changing this homepage</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html">Other frequently asked questions</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/configuration.html#default-settings">Full list of settings</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/deployment.html">Deploying to a production server</a></li>
-</ul>
-{% endblocktrans %}
+
+<!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide" style="background-image: url({% static "img/slides/slide00.png" %})"></div>
+        <div class="swiper-slide" style="background-image: url({% static "img/slides/slide01.png" %})"></div>
+        <div class="swiper-slide" style="background-image: url({% static "img/slides/slide02.png" %})"></div>
+        <div class="swiper-slide" style="background-image: url({% static "img/slides/slide03.png" %})"></div>
+        <div class="swiper-slide" style="background-image: url({% static "img/slides/slide04.png" %})"></div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="angle-left"><i class="fa fa-3x fa-angle-left"></i></div>
+    <div class="angle-right"><i class="fa fa-3x fa-angle-right"></i></div>
+    
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+</div>
+
+{% editable page.richtextpage.content %}
+{{ page.richtextpage.content|richtext_filters|safe }}
+{% endeditable %}
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/swiper/swiper.css" %}">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  $(document).ready(function () {
+      //initialize swiper when document ready  
+      var mySwiper = new Swiper ('.swiper-container', {
+        autoplay: 5000,
+        speed: 500,
+        pagination: '.swiper-pagination',
+        nextButton: '.angle-right',
+        prevButton: '.angle-left',
+        slidesPerView: 1,
+        paginationClickable: true,
+        paginationBulletRender: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+        },
+        // setWrapperSize: true,
+        loop: true,
+        effect: 'fade',
+        scrollbarHide: true
+      })
+    });
+</script>
 {% endblock %}
