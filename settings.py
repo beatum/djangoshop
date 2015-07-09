@@ -197,10 +197,10 @@ BLOG_USE_FEATURED_IMAGE = True
 USE_SOUTH = True
 
 # SITE BRAND
-SITE_TITLE = "Preludio with MARC & ANDRE"
+SITE_TITLE = _(u"Preludio")
 
 # SITE BRAND TEGLINE
-SITE_TAGLINE = ""
+SITE_TAGLINE = _(u"Мультибрендовый магазин белья и одежды")
 
 ########################
 # MAIN DJANGO SETTINGS #

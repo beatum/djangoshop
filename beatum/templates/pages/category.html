@@ -1,34 +1,43 @@
 {% extends "pages/page.html" %}
 
-{% load mezzanine_tags shop_tags i18n %}
+{% load mezzanine_tags shop_tags i18n staticfiles %}
 {% block body_id %}category{% endblock %}
+
+{% block breadcrumb_menu %}
+<li id="breadcrumb-menu-home">
+    <a href="{% url "home" %}">{% trans "Home" %}</a>
+</li>
+{{ block.super }}
+{% endblock %}
+
 
 {% block main %}{{ block.super }}
 {# Фильтр сортировки #}
 <div class="row">
-    <form class="product-sorting fr" role="form">
-        <div class="form-group">
-        <label class="control-label" for="sorting-select">{% trans "Sort by" %}</label>
-            <select onchange="location.href = this[this.selectedIndex].value;" class="form-control" id="sorting-select">
-            {% for name, option in settings.SHOP_PRODUCT_SORT_OPTIONS %}
-            {% if "rating" not in option or settings.SHOP_USE_RATINGS %}
-            <option{% if option == products.sort_by %} selected{% endif %}
-                value="{{ category.get_absolute_url }}?sort={{ option }}{{ querystring }}">
-                {{ name }}
-            </option>
-            {% endif %}
-            {% endfor %}
-            </select>
-        </div>
-    </form>
+    <div class="col-md-12">
+        {% editable page.category.content %}
+        {{ page.category.content|safe }}
+        {% endeditable %}
+    </div>
 </div>
-<!--
 <div class="row">
-    {% editable page.category.content %}
-    {{ page.category.content|safe }}
-    {% endeditable %}
+    <div class="col-md-12">
+        <form class="product-sorting fr" role="form">
+            <div class="form-group">
+                <select onchange="location.href = this[this.selectedIndex].value;" class="form-control" id="sorting-select">
+                {% for name, option in settings.SHOP_PRODUCT_SORT_OPTIONS %}
+                    {% if "rating" not in option or settings.SHOP_USE_RATINGS %}
+                    <option{% if option == products.sort_by %} selected{% endif %}
+                        value="{{ category.get_absolute_url }}?sort={{ option }}{{ querystring }}">
+                        {{ name }}
+                    </option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
 </div>
--->
 {% if child_categories %}
 <div class="row shop-category-list">
     {% if settings.SHOP_CATEGORY_USE_FEATURED_IMAGE %}
@@ -36,9 +45,9 @@
         <div class="col-xs-6 col-sm-4 col-lg-4">
         <a href="{{ category.get_absolute_url }}" class="thumbnail">
             {% if category.featured_image %}
-            <img src="{{ MEDIA_URL }}{% thumbnail category.featured_image 148 148 %}" />
+            <img src="{{ MEDIA_URL }}{% thumbnail category.featured_image 255 150 %}" />
             {% else %}
-            <div class="placeholder"></div>
+            <div class="placeholder"><img class="center-block img-responsive" src="{% static 'img/noimage.jpg' %}" /></div>
             {% endif %}
             <div class="caption">
                 <h4 class="category-title">{{ category.title }}</h4>

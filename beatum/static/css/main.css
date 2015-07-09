@@ -126,6 +126,11 @@ span.title {
 
 /* 1. CUSTOM ELEMENTS
    ========================================================================== */
+.heder-line i {
+    width: 25px;
+
+    color: #ccc;
+}
 
 body .category-title {
     font-size: 16px;

@@ -4,7 +4,7 @@
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}{% trans "Home" %}{% endblock %}
 
-{% block breadcrumb_menu %}{% endblock %}
+{# {% block breadcrumb_menu %}{% endblock %} #}
 
 {% block main %}
 
@@ -55,7 +55,7 @@
         paginationBulletRender: function (index, className) {
             return '<span class="' + className + '">' + (index + 1) + '</span>';
         },
-        // setWrapperSize: true,
+        setWrapperSize: true,
         loop: true,
         effect: 'fade',
         scrollbarHide: true

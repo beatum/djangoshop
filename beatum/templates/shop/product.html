@@ -1,5 +1,5 @@
 {% extends "shop/base.html" %}
-{% load staticfiles mezzanine_tags shop_tags rating_tags i18n %}
+{% load staticfiles mezzanine_tags shop_tags pages_tags rating_tags i18n future %}
 
 {% block meta_title %}{{ product.meta_title }}{% endblock %}
 {% block body_id %}category{% endblock %}
@@ -43,6 +43,16 @@ $(document).ready(function() {
 
 {% block breadcrumb_menu %}
 {{ block.super }}
+<li id="breadcrumb-menu-home">
+    <a href="{% url "home" %}">{% trans "Home" %}</a>
+</li>
+{% with product.categories.all as categories %}
+   {% if categories %}
+    {% for cat in categories|slice:'0:' %}
+        <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
+    {% endfor %}
+{% endif %}
+  {% endwith %}
 <li>{{ product.title }}</li>
 {% endblock %}
 

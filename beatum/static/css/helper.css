@@ -5,9 +5,16 @@
 }
 
 .fl {
-  float: left;
+    float: left;
 }
 
 .fr {
-  float: right;
+    float: right;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+.pb-20 {
+    padding-top: 20px;
 }
