@@ -97,13 +97,9 @@
                 {# <p class="text-center">Мазагин MARK&ANDRE</p> #}
                 <img title="{% trans "Мазагин MARK&ANDRE" %}" src="{% static 'img/logo/M&A-logo.png' %}" class="img-responsive" alt="{% trans "Мазагин MARK&ANDRE" %}">
             </div>
-            <div class="col-md-6 text-center">
-                <div class="row pt-20">
-                    <p class="lead pt-20"><i class="fa fa-map-marker"></i>  <a class="head-link" href="">Как проехать к нашим магазинам?</a></p>
-                </div>
-                <div class="row">
+            <div class="col-md-6 col-sm-12 text-center pt-20">
+                    <p class="lead pt-20"><i class="fa fa-map-marker"></i>  <a class="head-link" href="/feedback/">Как проехать к нашим магазинам?</a></p>
                     <div class="center-block pb-20">{% search_form "all" %}</div>
-                </div>
             </div>
         </div>
     </div>
@@ -152,14 +148,14 @@
     </footer>
     <div class="container">
         <div class="row">
-            <p class="site-info text-center">
+            <p class="preludio-info text-center">
             {% blocktrans %}
-                &copy; 2015, SITENAME.RU<br>
+                &copy; 2015, Preludio &ndash; Мультибрендовый магазин белья и одежды.<br>
                 Магазин "PRELUDIO" &ndash; ТРК "SBS Megamall", ул. Уральская 79\1. 2 этаж (вход с фонтана) т. +7 (964) 914 05 22<br>Магазин "MARC&ANDRE" &ndash; Мегацентр "Красная Площадь". ул. Дзержинского 100. 2 этаж. т. +7 (967) 670 44 55
                 <br>Россия, Краснодарский край, г. Краснодар
             {% endblocktrans %}
             </p>
-            <p class="site-info text-center">
+            <p class="beatum-info text-center">
                 <a href="http://beatum-site.ru/">{% trans "Создание сайта — «Биатум»" %}</a>
             </p>
         </div>
