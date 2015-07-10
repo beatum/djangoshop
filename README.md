@@ -1,6 +1,6 @@
 # Djangoshop (Mezzanine CMS + Cartridge + Beatum)
 
-Версия проекта 0.01 - Beta 
+Версия проекта 1.0.0
 
 Проект предназначен для развёртывания интернет-витрин с каталогом товаров.
 
@@ -31,9 +31,13 @@
 
 1. Переместить дополнительные свойства товара из EXTRA_MODEL_FIELDS в отдельную модель
 2. Проверить работу django-compressor
+3. На старнице товара вывести bredcrumb вида:
+
+home > category_slug > child_category_slug > product_title
 
 ## Проблемы
 1. При генерации счетов в формате PDF ломается кодировка!
+2. На странице товара ломается bredcrumb
 
 ## Основная документация
 1. http://mezzanine.jupo.org/docs/ - Django CMS Mezzanine

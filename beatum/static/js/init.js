@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     // NiceScroll
     $("html").niceScroll({
-        cursorcolor: "#CCC",
+        cursorcolor: "#000",
         cursorwidth: "10px", // cursor width in pixel (you can also write "5px")
         cursorborder: "0", // css definition for cursor border
         cursorborderradius: "0", // border radius in pixel for curso

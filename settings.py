@@ -315,6 +315,7 @@ import os
 
 # Full filesystem path to the project.
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = PROJECT_ROOT
 path = lambda *a: os.path.join(PROJECT_ROOT, *a)
 
 # Name of the directory for the project.
@@ -381,7 +382,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "beatum",
-    "mezzanine_slides",
+    # "mezzanine_slides",
     "cartridge.shop",
     "mezzanine.boot",
     "mezzanine.conf",

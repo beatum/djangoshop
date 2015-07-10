@@ -27,6 +27,10 @@ if settings.USE_MODELTRANSLATION:
 
 urlpatterns += patterns('',
 
+    # Feedback
+    url("^feedback/$", direct_to_template, {"template": "feedback.html"},
+        name="feedback"),
+
     # Cartridge URLs.
     ("", include("cartridge.shop.urls")),
     url("^account/orders/$", "cartridge.shop.views.order_history",

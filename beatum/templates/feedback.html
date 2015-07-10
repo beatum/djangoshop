@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n static mezzanine_tags pages_tags future %}
+
+{% block meta_title %}{% trans "Контактная информация" %}{% endblock %}
+{% block title %}{% trans "Контактная информация" %}{% endblock %}
+
+{% block breadcrumb_menu %}{% trans "Контакты" %}{% endblock %}
+
+{% block main %}
+{% editable page.richtextpage.content %}
+{{ page.richtextpage.content|richtext_filters|safe }}
+{% endeditable %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <p class="lead"><span class="osb">Preludio</span> &ndash; Мультибрендовый магазин <br>ТРК "SBS Megamall", ул. Уральская 79\1. 2 этаж (вход с фонтана) т. +7 (964) 914 05 22</p>
+        <div class="pt-20 pb-20">
+        <a class="dg-widget-link" href="http://2gis.ru/krasnodar/firm/3237490513262581/center/39.05253410339356,45.03516968696956/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Краснодара</a><div class="dg-widget-link"><a href="http://2gis.ru/krasnodar/center/39.05253,45.034741/zoom/16/routeTab/rsType/bus/to/39.05253,45.034741╎Preludio, магазин нижнего белья и купальников?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Preludio, магазин нижнего белья и купальников</a></div><script charset="utf-8" src="http://widgets.2gis.com/js/DGWidgetLoader.js"></script><script charset="utf-8">new DGWidgetLoader({"width":768,"height":400,"borderColor":"#a3a3a3","pos":{"lat":45.03516968696956,"lon":39.05253410339356,"zoom":16},"opt":{"city":"krasnodar"},"org":[{"id":"3237490513262581"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <p class="lead pt-20"><span class="osb">MARC&ANDRE</span> &ndash; Магазин <br>Мегацентр "Красная Площадь". ул. Дзержинского 100. 2 этаж. т. +7 (967) 670 44 55 </p>
+        <p><span class="text-danger osb">Внимание:</span> На карте указан телефон Мегацентра "Красная Площадь"! Для того чтобы связаться с менеджерами магазина звоните по телефону: <span class="osb">+7 (967) 670 44 55</span></p>
+        <div class="pt-20 pb-20 mb-20">
+            <a class="dg-widget-link" href="http://2gis.ru/krasnodar/firm/3237490513161315/center/38.98406267166138,45.10244775857171/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Краснодара</a><div class="dg-widget-link"><a href="http://2gis.ru/krasnodar/firm/3237490513161315/photos/3237490513161315/center/38.98406267166138,45.10244775857171/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">Фотографии компании</a></div><div class="dg-widget-link"><a href="http://2gis.ru/krasnodar/center/38.984105,45.102442/zoom/16/routeTab/rsType/bus/to/38.984105,45.102442╎Красная площадь, мегацентр?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Красная площадь, мегацентр</a></div><script charset="utf-8" src="http://widgets.2gis.com/js/DGWidgetLoader.js"></script><script charset="utf-8">new DGWidgetLoader({"width":768,"height":400,"borderColor":"#a3a3a3","pos":{"lat":45.10244775857171,"lon":38.98406267166138,"zoom":16},"opt":{"city":"krasnodar"},"org":[{"id":"3237490513161315"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
